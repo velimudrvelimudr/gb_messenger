@@ -1,8 +1,7 @@
 from json import dumps, loads
-
 from common.variables import ENCODING, MAX_CONNECTIONS, MAX_SIZE_PACKAGE
 
-def connect_data (args=None):
+def connect_data (args=''):
     """ Получает список из трёх элементов (командная трока) и возвращает кортеж из второго и третьего элемента.
     В   них содержатся данные для подключения/прослушивания клиента/сервера (адрес и порт). """
 
@@ -40,6 +39,5 @@ def send_msg(sock, msg):
         raise TypeError('Сообщение должно быть словарём.')
 
     b_msg = bytes(j_msg, 'utf-8')
-
-    sock.send(b_msg)
+    return sock.send(b_msg)
 
