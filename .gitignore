@@ -1,1 +1,3 @@
 messenger.code-workspace
+*.log
+*/__pycache__/*
