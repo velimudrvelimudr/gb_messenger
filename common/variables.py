@@ -1,3 +1,17 @@
+"""
+Geek University Python-разработки
+
+Мессенджер
+Константы приложения
+
+Учебный проект к курсу "Клиент-серверные приложения на Python".
+
+Автор: Михаил Духонин
+
+Октябрь - ноябрь 2021
+
+ """
+
 DEFAULT_PORT = 9090
 DEFAULT_CLIENT_HOST = 'localhost'
 DEFAULT_SERVER_HOST = ''

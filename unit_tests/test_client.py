@@ -1,11 +1,25 @@
+"""
+Geek University Python-разработки
+
+Мессенджер
+Тесты для клиента
+
+Учебный проект к курсу "Клиент-серверные приложения на Python".
+
+Автор: Михаил Духонин
+
+Октябрь - ноябрь 2021
+
+ """
+
 import  os
 import sys
 import unittest
 
 sys.path.append(os.path.dirname(os.getcwd()))
 
-from common.variables import ACTION, DEFAULT_CLIENT_HOST, DEFAULT_PORT, PRESENCE, RESPONSE, TIME
-from client import get_connection_data, send_msg, send_presence
+from client import get_connection_data, send_presence
+from common.variables import DEFAULT_CLIENT_HOST, DEFAULT_PORT, TIME
 from test_utils import TestSock
 
 

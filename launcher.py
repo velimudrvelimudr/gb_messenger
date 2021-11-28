@@ -1,13 +1,28 @@
-from subprocess import Popen, CREATE_NEW_CONSOLE, PIPE
+"""
+Geek University Python-разработки
+
+Мессенджер
+Лаунчер
+
+Учебный проект к курсу "Клиент-серверные приложения на Python".
+
+Автор: Михаил Духонин
+
+Октябрь - ноябрь 2021
+
+ """
+
+from subprocess import Popen, CREATE_NEW_CONSOLE
 
 PROCESS_LIST = []
 
 # Файлы для вывода.
 
-f1 = open('client.log', 'a', encoding='utf-8')
-f2 = open('server.log', 'a', encoding='utf-8')
+f1 = open('client_out.log', 'a', encoding='utf-8')
+f2 = open('server_out.log', 'a', encoding='utf-8')
 
 INP_MSG = f'Введите команду:\nq - выход;\no - запустить сервер и клиенты;\nx - закрыть окна.'
+# Интересно, что не нравится pylinter'у?...
 
 while True:
     cmd = input(INP_MSG)

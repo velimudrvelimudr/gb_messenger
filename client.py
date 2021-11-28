@@ -1,12 +1,29 @@
-from json import dumps
-from socket import AF_INET, SOCK_STREAM, socket
+"""
+Geek University Python-разработки
+
+Мессенджер
+Клиентское приложение
+
+Учебный проект к курсу "Клиент-серверные приложения на Python".
+
+Автор: Михаил Духонин
+
+Октябрь - ноябрь 2021
+
+ """
+
 from sys import argv
 from datetime import datetime
+from socket import AF_INET, SOCK_STREAM, socket
+from logging import getLogger
+
 from common.utils import connect_data, get_msg, send_msg
 from common.variables import ACTION, PRESENCE, TIME, DEFAULT_CLIENT_HOST, DEFAULT_PORT, RESPONSE, ALLERT
+import log_configs.client_log_config
 
+log = getLogger('msgr.clnt')
 
-def get_connection_data(args=['']):
+def get_connection_data(args):
     """ Получает данные для подключения """
 
     if len(args) == 3:
@@ -19,7 +36,10 @@ def send_presence(sock):
     """ Отправляет приветствие серверу.
     Возвращает число отправленных байтов.
 
-     """
+    """
+
+    log.info('Запуск функции send_presence')
+    # Чтобы что-то писалось в клиентский лог при запуске тестов.
 
     msg_presence = {
         ACTION: PRESENCE,
@@ -30,6 +50,8 @@ def send_presence(sock):
 
 
 def main():
+    """ Основной код """
+
     sock = socket(AF_INET, SOCK_STREAM)
     cn = get_connection_data(argv)
     sock.connect(cn)
@@ -40,4 +62,8 @@ def main():
 
 
 if __name__ == '__main__':
-    print(main())
+    try:
+        print(main())
+        log.info('Клиент отработал!')
+    except ConnectionRefusedError as e:
+        log.error('Ошибка соединения', exc_info=True)

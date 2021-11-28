@@ -1,11 +1,25 @@
+"""
+Geek University Python-разработки
+
+Мессенджер
+Тесты для Сервера
+
+Учебный проект к курсу "Клиент-серверные приложения на Python".
+
+Автор: Михаил Духонин
+
+Октябрь - ноябрь 2021
+
+ """
+
 import  os
 import sys
 import unittest
 
 sys.path.append(os.path.dirname(os.getcwd()))
 
-from common.variables import ACTION, DEFAULT_SERVER_HOST, DEFAULT_PORT, PRESENCE, RESPONSE, TIME
 from server import create_response, get_connection_data
+from common.variables import ACTION, DEFAULT_SERVER_HOST, DEFAULT_PORT, PRESENCE, RESPONSE, TIME
 
 class TestServer(unittest.TestCase):
     """ Тестирование сервера """
