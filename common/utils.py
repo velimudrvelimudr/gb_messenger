@@ -12,10 +12,26 @@ Geek University Python-разработки
 
  """
 
+import sys
+from logging import getLogger
 from json import dumps, loads
 from common.variables import ENCODING, MAX_SIZE_PACKAGE
+from common.decorators import log_func
 
-def connect_data (args=''):
+sys.path.append('..')
+
+import log_configs.client_log_config
+import log_configs.server_log_config
+
+if sys.argv[0].find('server') != -1:
+    log = getLogger('server')
+elif sys.argv[0].find('client') != -1:
+    log = getLogger('client')
+else:
+    print('логгер не найден')
+
+@log_func(log)
+def connect_data (args):
     """ Получает список из трёх элементов (командная трока)
     и возвращает кортеж из второго и третьего элемента.
     В   них содержатся данные для подключения/прослушивания клиента/сервера (адрес и порт).
@@ -28,6 +44,7 @@ def connect_data (args=''):
 # Если честно, мне откровенно лень заморачиваться с парсингом командной строки.
 # Если реально надо будет сделать соответствующий интерфейс, я лучше заморочусь с аргпарсе.
 
+@log_func(log)
 def get_msg(sock):
     """ Получает сообщение из сокета """
 
@@ -50,6 +67,7 @@ def get_msg(sock):
         raise TypeError('не словарь')
 
 
+@log_func(log)
 def send_msg(sock, msg):
     """ Отправляет сообщение msg в сокет сервера sock. """
 

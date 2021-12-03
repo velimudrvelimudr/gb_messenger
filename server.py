@@ -19,10 +19,12 @@ from logging import getLogger, error, info
 
 from common.utils import connect_data, get_msg, send_msg
 from common.variables import RESPONSE, DEFAULT_PORT,DEFAULT_SERVER_HOST, ALLERT, MAX_CONNECTIONS, ACTION, PRESENCE, TIME
+from common.decorators import log_func
 import log_configs.server_log_config
 
 log = getLogger('msgr.srv')
 
+@log_func(log)
 def get_connection_data(args):
     """ Возвращает данные для подключения. Берёт либо из командной строки,
     если она их содержит, либо данные по умолчанию.
@@ -35,6 +37,7 @@ def get_connection_data(args):
         return (DEFAULT_SERVER_HOST, DEFAULT_PORT)
 
 
+@log_func(log)
 def create_response(msg: dict) -> dict:
     """ Получает сообщение от клиента (словарь) и возвращает ответ сервера (словарь) """
 

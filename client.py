@@ -19,10 +19,12 @@ from logging import getLogger
 
 from common.utils import connect_data, get_msg, send_msg
 from common.variables import ACTION, PRESENCE, TIME, DEFAULT_CLIENT_HOST, DEFAULT_PORT, RESPONSE, ALLERT
+from common.decorators import log_func
 import log_configs.client_log_config
 
 log = getLogger('msgr.clnt')
 
+@log_func(log)
 def get_connection_data(args):
     """ Получает данные для подключения """
 
@@ -32,6 +34,7 @@ def get_connection_data(args):
         return (DEFAULT_CLIENT_HOST, DEFAULT_PORT)
 
 
+@log_func(log)
 def send_presence(sock):
     """ Отправляет приветствие серверу.
     Возвращает число отправленных байтов.
